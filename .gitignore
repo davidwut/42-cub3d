@@ -2,6 +2,7 @@
 !*/
 !*.*
 !Makefile
+!configure
 *.o*
 .DS_STORE
 *dSYM*

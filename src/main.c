@@ -6,7 +6,7 @@
 /*   By: dwuthric <dwuthric@student42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:02:24 by dwuthric          #+#    #+#             */
-/*   Updated: 2022/09/13 16:45:41 by dwuthric         ###   ########.fr       */
+/*   Updated: 2022/09/14 10:59:20 by dwuthric         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "cub3d.h"
 
 
-#define mapWidth 24
-#define mapHeight 24
-#define screenWidth 640
-#define screenHeight 480
+#define MAPWIDTH 24
+#define MAPHEIGHT 24
+#define SCREENWIDTH 640
+#define SCREENHEIGHT 480
 
-int worldMap[mapWidth][mapHeight] =
+int worldMap[MAPWIDTH][MAPHEIGHT] =
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -48,6 +48,12 @@ int worldMap[mapWidth][mapHeight] =
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+void	printe(t_env e)
+{
+	printf("screenWidth=%d\n", e.screenWidth);
+	printf("screenHeight=%d\n", e.screenHeight);
+}
+
 void	px2img(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -72,10 +78,12 @@ int	main(void)
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
+	t_env	e;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1200, 900, "Cub3d");
-	img.img = mlx_new_image(mlx, 200, 200);
+	mlx_get_screen_size(mlx, &e.screenWidth, &e.screenHeight);
+	mlx_win = mlx_new_window(mlx, e.screenWidth, e.screenHeight, "Cub3d");
+	img.img = mlx_new_image(mlx, e.screenWidth, e.screenHeight);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	draw_rectangle(&img, 100, 100, 100, 100, 0x00ff0000);

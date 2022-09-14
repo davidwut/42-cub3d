@@ -6,7 +6,7 @@
 /*   By: dwuthric <dwuthric@student42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:19:10 by dwuthric          #+#    #+#             */
-/*   Updated: 2022/09/13 16:45:37 by dwuthric         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:25:20 by dwuthric         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdio.h>
 # include <mlx.h>
+# include <math.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libft/include/libft.h"
 
 typedef struct	s_data {
 	void	*img;
@@ -25,7 +29,8 @@ typedef struct	s_data {
 }	t_data;
 
 typedef struct	s_env {
-	int	screen
+	int	screenWidth;
+	int	screenHeight;
 }	t_env;
 
 #endif

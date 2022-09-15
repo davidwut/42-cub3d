@@ -6,7 +6,7 @@
 /*   By: dwuthric <dwuthric@student42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:19:10 by dwuthric          #+#    #+#             */
-/*   Updated: 2022/09/14 11:25:20 by dwuthric         ###   ########.fr       */
+/*   Updated: 2022/09/15 08:44:45 by dwuthric         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct	s_data {
 }	t_data;
 
 typedef struct	s_env {
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
 	int	screenWidth;
 	int	screenHeight;
 }	t_env;

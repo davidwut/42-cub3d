@@ -6,7 +6,7 @@
 /*   By: dwuthric <dwuthric@student42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:02:24 by dwuthric          #+#    #+#             */
-/*   Updated: 2022/09/14 10:59:20 by dwuthric         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:14:48 by dwuthric         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,30 @@ void	draw_rectangle(t_data *data, int x, int y, int width, int height, int color
 	}
 }
 
+void	init(t_env *e)
+{
+	e->mlx = mlx_init();
+	mlx_get_screen_size(e->mlx, &e->screenWidth, &e->screenHeight);
+	e->screenWidth *= 0.7;
+	e->screenHeight *= 0.7;
+	e->mlx_win = mlx_new_window(e->mlx, e->screenWidth, e->screenHeight, "Cub3d");
+	e->img.img = mlx_new_image(e->mlx, e->screenWidth, e->screenHeight);
+	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bits_per_pixel, &e->img.line_length,
+								&e->img.endian);
+
+}
+
+void	draw(t_env *e)
+{
+	draw_rectangle(&e->img, 100, 100, 100, 100, 0x00ff0000);
+	mlx_put_image_to_window(e->mlx, e->mlx_win, e->img.img, 0, 0);
+	mlx_loop(e->mlx);
+}
+
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
 	t_env	e;
 
-	mlx = mlx_init();
-	mlx_get_screen_size(mlx, &e.screenWidth, &e.screenHeight);
-	mlx_win = mlx_new_window(mlx, e.screenWidth, e.screenHeight, "Cub3d");
-	img.img = mlx_new_image(mlx, e.screenWidth, e.screenHeight);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	draw_rectangle(&img, 100, 100, 100, 100, 0x00ff0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	init(&e);
+	draw(&e);
 }

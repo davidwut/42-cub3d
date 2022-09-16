@@ -6,7 +6,7 @@
 /*   By: dwuthric <dwuthric@student42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:02:24 by dwuthric          #+#    #+#             */
-/*   Updated: 2022/09/15 09:14:48 by dwuthric         ###   ########.fr       */
+/*   Updated: 2022/09/16 08:29:55 by dwuthric         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,22 @@ int	main(void)
 
 	init(&e);
 	draw(&e);
+
+	double posX = 22, posY = 12;
+	double dirX =  -1, dirY = 0;
+	double planeX = 0, planeY = 0.66;
+
+	double time = 0;
+	double oldTime = 0;
+
+	while (!done())
+	{
+		int w = e.screenWidth;
+		for (int x = 0; x < w; x++)
+		{
+			double cameraX = 2 * x / (double)w - 1;
+			double rayDirX = dirX + planeX * cameraX;
+			double rayDirY = dirY + planeY * cameraX;
+		}
+	}
 }
